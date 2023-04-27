@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>直播页面</title>
+    <meta name="description" content="仿Bilibili HTML5播放">
+<meta name=" keywords"
+        content="仿Bilibili HTML5播放">
+
+</head>
+
+<body>
+    <header>
+        
+    </header>
+<div class="play-video wrapper clearfix" style="width: 1215px;
+    margin: 0 auto;">
+        <!-- 左边 -->
+        <div class="play-left" style="float: left;width: 644px;">
+            <!-- 大视频 -->
+            <div class="bigvideo" style="position: relative;width: 1144px;box-shadow: 0 0 3px 3px #ccc;">
+                <video id="video" controls autoplay width="1144" height="644"></video>
+                <!-- 视频描述 -->
+                <div class="info">
+                    <p>直播测试</p>
+                    <p>2023.04.27</p>
+                </div>
+            </div>
+</div>
+<script src="flv.min.js"></script>
+    <script>
+        var player = document.getElementById('video');
+	
+        if (flvjs.isSupported()) {
+            var flvPlayer = flvjs.createPlayer({
+                type: 'flv',
+                "isLive": true,
+                url: 'http://123.57.221.224:7001/live/test.flv',//改为自己服务的地址
+            });
+            flvPlayer.attachMediaElement(video);
+            flvPlayer.load(); //加载
+            flv_start();
+        }
+        function flv_start() {
+            player.play();
+        }
+        function flv_pause() {
+            player.pause();
+        }
+        function flv_destroy() {
+            player.pause();
+            player.unload();
+            player.detachMediaElement();
+            player.destroy();
+            player = null;
+        }
+    </script>
+</body>
